@@ -15,22 +15,22 @@ import throttle from "lodash.throttle";
         localStorage.setItem("feedback-form-state", JSON.stringify(dataForm));
     }
     
-    function onSubmit(e) {
-        e.preventDefault();
+function onSubmit(e) {
+    e.preventDefault();
+    const dataInfo = localStorage.getItem("feedback-form-state");
+    console.log(dataInfo);
         emailInput.value = '';
         messageInput.value = '';
 
         localStorage.removeItem("feedback-form-state");
-
     }
     
     function dataStorage() {
-        const data = localStorage.getItem("feedback-form-state");
-        if (data !== null) {
-            const dataForm = JSON.parse(data);
-            console.log(dataForm);
-            emailInput.value = dataForm.email;
-            messageInput.value = dataForm.message;
+                // const data = localStorage.getItem("feedback-form-state");
+        if (dataInfo !== null) {
+            const formData = JSON.parse(dataInfo);
+            emailInput.value = formData.email;
+            messageInput.value = formData.message;
 
         }
     }
