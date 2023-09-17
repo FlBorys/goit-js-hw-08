@@ -17,20 +17,20 @@ import throttle from "lodash.throttle";
     
 function onSubmit(e) {
     e.preventDefault();
-    const dataInfo = localStorage.getItem("feedback-form-state");
+    const dataInfo = JSON.parse(localStorage.getItem("feedback-form-state"));
     console.log(dataInfo);
         emailInput.value = '';
         messageInput.value = '';
 
         localStorage.removeItem("feedback-form-state");
     }
-    
+window.addEventListener('load', dataStorage);
     function dataStorage() {
-                // const data = localStorage.getItem("feedback-form-state");
-        if (dataInfo !== null) {
-            const formData = JSON.parse(dataInfo);
+                const dataIn = localStorage.getItem("feedback-form-state");
+        if (dataIn !== null) {
+            const formData = JSON.parse(dataIn);
             emailInput.value = formData.email;
-            messageInput.value = formData.message;
+            messageInput.value = formData.message ? formData.message : '';
 
         }
     }
